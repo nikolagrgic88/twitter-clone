@@ -1,0 +1,26 @@
+.profilePhotoPlaceholder {
+	display: flex;
+	position: relative;
+}
+.profilePhoto {
+	width: 50px;
+	height: 50px;
+	margin-right: 12px;
+	
+}
+
+/*  */
+.profilePhotoPlaceholder.withLine::after {
+	content: '';
+	position: absolute;
+	top: 55%; /* Place the line at the middle of the parent element */
+	transform: translateY(-50%); /* Adjust to center the line vertically */
+	left: 40%; /* Adjust the left position as needed */
+	width: 1px;
+	height: 85%; /* Set the height to 50% of the parent element's height */
+	bottom: 0;
+	display: flex;
+	flex-grow: 1;
+	background-color: rgba(80, 80, 80, 0.613);
+	margin-top: 20px;
+}

@@ -1,0 +1,63 @@
+.listContainer {
+	background-color: white;
+	margin: 0 5px;
+	border-radius: 15px;
+	min-width: 350px;
+	flex-shrink: 1;
+}
+.listItem {
+	margin: 5px;
+	gap: 5px;
+	display: flex;
+	min-width: 98%;
+	border: 1px solid grey;
+	border-radius: 15px;
+}
+.listItem:first-child {
+	margin-top: 15px;
+}
+.listItem:last-child {
+	margin-bottom: 15px;
+}
+.listItemBox {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 10px;
+	min-width: 90%;
+	text-decoration: none;
+	color: inherit;
+}
+
+.searchBox {
+	background-color: white;
+	border-radius: 15px;
+	display: flex;
+	flex-direction: column;
+	padding: 5px;
+	min-height: 400px;
+	max-height: 400px;
+	overflow-y: scroll;
+}
+.searchBox::-webkit-scrollbar {
+	display: none;
+}
+.searchBox span {
+	margin: 10px;
+}
+
+.inputBox {
+	padding: 5px;
+	position: sticky;
+	top: 0px;
+	z-index: 100;
+	background-color: white;
+min-height: 30px;
+}
+.inputBox input {
+	min-width: 98%;
+	padding: 5px;
+	border: 1px solid black;
+	border-radius: 15px;
+}

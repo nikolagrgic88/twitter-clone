@@ -1,0 +1,26 @@
+.commentPlaceholder {
+	background-color: rgb(252, 252, 252);
+	border-radius: 15px;
+}
+.usersPost {
+	padding-bottom: 20px;
+}
+.commentBox {
+	display: flex;
+	flex-direction: row;
+	justify-content: baseline;
+	align-items: start;
+	gap: 0;
+	border-bottom: 1px solid rgba(128, 128, 128, 0.613);
+}
+/* .avatar {
+	min-width: 80px;
+} */
+.inputBox {
+	margin-left: -10px;
+	margin-bottom: 20px;
+}
+.inputBox textarea {
+	margin-left: -10px;
+	margin-bottom: -20px;
+}

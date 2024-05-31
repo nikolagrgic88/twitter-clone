@@ -1,0 +1,50 @@
+.box {
+	line-height: 25px;
+}
+.content {
+	padding-bottom: 12px;
+	width: 506px;
+}
+
+.imageBox {
+	max-width: 90%;
+	max-height: auto;
+	margin: 10px 0;
+}
+
+.imageBox img {
+	max-width: 100%;
+	border-radius: 15px;
+}
+
+.text {
+	line-break: anywhere;
+}
+.name {
+	display: flex;
+	justify-content: space-between;
+	font-size: 19px;
+}
+
+.name-header {
+	display: flex;
+}
+.post-menu {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.post-menu a {
+	/* fix this so dots are in the middle */
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-decoration: none;
+	letter-spacing: 3px;
+	width: 30px;
+	height: 30px;
+}
+a {
+	text-decoration: none;
+	color: inherit;
+}

@@ -1,0 +1,81 @@
+.form {
+	font-family: inherit;
+	display: flex;
+	flex-direction: column;
+	min-width: 300px;
+	background-color: white;
+	padding: 2rem;
+	border-radius: 1rem;
+}
+.formName {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.formBlock {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	padding: 10px 0;
+}
+
+.formBlock input {
+	font-size: medium;
+	border-radius: 15px;
+	padding: 10px;
+	border: 1px solid rgb(91, 86, 86);
+}
+.inputField {
+	position: relative;
+}
+
+.inputField input {
+	width: calc(100% - 22px); /* Adjust width to accommodate button */
+}
+
+.inputField ion-button {
+	position: absolute;
+	right: 10px;
+	top: 10px;
+}
+.inputField ion-icon {
+	font-size: 22px;
+}
+.footerText {
+	margin-top: 20px;
+}
+.postButton {
+	margin: 20px 0;
+}
+.postButton button {
+	min-width: 100%;
+	border: 1px white;
+	background-color: rgb(29, 155, 240);
+	border-bottom-left-radius: 9999px;
+	border-bottom-right-radius: 9999px;
+	border-top-right-radius: 9999px;
+	border-top-left-radius: 9999px;
+	cursor: pointer;
+
+	font-size: 20px;
+	color: azure;
+	padding: 5px 0;
+	transition: transform 0.3s ease;
+}
+
+.disabledBtn button {
+	background-color: hsl(205, 5%, 52%);
+	cursor: auto;
+}
+.formFieldError input {
+	border: 1px solid red;
+}
+.formFieldError label {
+	color: red;
+}
+.errorText span {
+	font-size: 12px;
+	color: red;
+	position: absolute;
+}

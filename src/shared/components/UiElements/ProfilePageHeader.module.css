@@ -1,0 +1,76 @@
+.profileHeader {
+	/* display: absolute; */
+	max-width: 650px;
+
+	border-bottom: 1px solid rgba(128, 128, 128, 0.613);
+}
+
+.avatarContainer {
+	position: absolute;
+	background-color: rgb(178, 178, 178);
+	border-radius: 50%;
+	transform: translate(5%, -50%);
+	/* z-index: 1; */
+}
+.avatarContainer label:hover::after {
+	content: 'Change Photo';
+	text-align: center;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+
+	color: white; /* Text color */
+	padding: 5px 10px;
+	border-radius: 5px;
+	font-size: 14px;
+	font-weight: bold;
+	transition: 1s;
+}
+
+.avatarContainer label:hover {
+	background-color: rgba(0, 0, 0, 0.5); /* Blackish transparent color */
+	border-radius: 50%;
+}
+
+.avatarContainer label:hover img {
+	filter: brightness(0.5); /* Darken the image on hover */
+	transition: filter 0.3s ease-in-out;
+}
+.modalContainer {
+	position: absolute; 
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%; /* Fills the entire avatar container */
+	background-color: rgba(0, 0, 0, 0.178); /* Dark transparent background */
+	display: flex; /* Center buttons horizontally */
+	justify-content: center;
+	align-items: center;
+	opacity: 1; /* Initially hidden */
+	transition: opacity 0.3s ease-in-out; /* Smooth fade in/out animation */
+	border-radius: 50%;
+}
+
+.avatarContainer.imageUpload .modalContainer {
+	/* Show modal when imageUpload is true */
+	opacity: 1; /* Make modal visible */
+}
+
+.modalContainer button {
+	/* Style buttons */
+	height: 35px;
+	margin: 5px;
+	padding: 5px;
+	border: none;
+	border-radius: 5px;
+	color: rgb(6, 6, 6);
+	cursor: pointer;
+	transition: background-color 0.2s ease-in-out;
+}
+
+.modalContainer button:hover {
+	/* Button hover effect */
+	background-color: rgba(26, 26, 26, 0.845);
+	color: white;
+}

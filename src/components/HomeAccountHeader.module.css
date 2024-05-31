@@ -1,0 +1,98 @@
+.home {
+	margin: 0;
+	font-size: 16px;
+	height: 53px;
+	padding-left: 16px;
+	padding-right: 16px;
+	display: flex;
+}
+
+.homebar {
+	position: fixed; 
+	top: 0;
+	width: 600px;
+	backdrop-filter: blur(10px);
+}
+.tweetBoxTop {
+	padding-top: 120px;
+}
+
+.home-nav {
+	display: flex;
+	justify-content: space-around;
+	border-bottom: 1px solid rgba(128, 128, 128, 0.613);
+	padding-top: 30px;
+	padding-bottom: 20px;
+	text-decoration: none;
+}
+
+.home-nav-link :link {
+	text-decoration: none;
+	font-size: 20px;
+	color: rgba(130, 130, 130, 0.972);
+	padding: 10px 120px;
+	height: 53px;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.home-nav-link a.active {
+	text-decoration: none;
+	border-image: linear-gradient(
+		to right,
+		transparent 33%,
+		black 33%,
+		black 67%,
+		transparent 67%
+	);
+	padding-bottom: 10px;
+}
+
+.home-nav-link:hover {
+	background-color: rgba(0, 0, 0, 0.09);
+	text-decoration: none;
+}
+
+.tweet-home-buttons {
+	display: flex;
+	justify-content: space-between;
+	flex-grow: 2;
+	border-top: 1px solid rgba(128, 128, 128, 0.613);
+}
+
+.tweet-area::-webkit-scrollbar {
+	width: 0px;
+}
+.tweet-area .placeholder {
+	position: absolute;
+	margin-top: -3px;
+	font-size: 22px;
+	color: #98a5b1;
+	pointer-events: none;
+}
+.tweet-area .input {
+	outline: none;
+	font-size: 17px;
+	min-height: inherit;
+	word-wrap: break-word;
+	word-break: break-all;
+}
+.editable {
+	position: relative;
+	z-index: 5;
+}
+.readonly {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	color: transparent;
+	background: transparent;
+}
+.readonly .highlight {
+	background: #ffffff;
+}
+
+label input[type='file'] {
+	display: none;
+}

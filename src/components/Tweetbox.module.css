@@ -1,0 +1,160 @@
+.tweet-home-box {
+	display: flex;
+	align-items: stretch;
+	border-bottom: 1px solid rgba(128, 128, 128, 0.613);
+	margin-top: 10px;
+	padding: 4px 16px;
+	height: auto;
+	max-width: 100%;
+}
+.tweet-home-img {
+	width: 11%;
+	margin-right: 12px;
+}
+.tweet-home-tweetbox {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	gap: 2rem;
+	padding: 12px 0 5px 12px;
+	width: 450px;
+}
+.tweet-home-input {
+	height: auto;
+}
+
+.tweet-home-input textarea {
+	/* display: flex;
+	flex-direction: column;
+	height: auto;
+	padding-top: 12px;
+	flex-grow: 2; */
+	width: 100%;
+	height: auto;
+	resize: none;
+	font-size: 16px;
+	outline: none;
+	border: none;
+	overflow: hidden;
+}
+
+.tweet-home-input input {
+	min-height: 24px;
+	padding: 6px 0 6px 0;
+	max-width: auto;
+	font-size: 20px;
+	border: none;
+	outline: none;
+}
+.tweet-image-box {
+	
+	margin-top: 8px;
+	height: auto;
+}
+
+.tweet-image-box img {
+	max-width: 100%;
+	margin-right: 8px;
+	height: auto;
+	object-fit: contain;
+	border-radius: 15px;
+}
+
+.tweet-image button {
+    position: absolute; /* Absolute positioning for independent placement */
+    top: 10%; /* Vertical centering */
+    transform: translateY(-50%); /* Vertical centering adjustment */
+    right: 10px;  /* Right positioning from image edge */
+    font-size: 20px;
+    background-color: transparent;
+    color: rgba(68, 68, 68, 0.719);
+    cursor: pointer;
+    border: none;
+    z-index: 2; /* Higher z-index to ensure it appears in front of the image */
+}
+
+.tweet-image-box {
+    position: relative; /* Required for absolute positioning of the button */
+}
+.tweet-image button:hover {
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.727);
+	border-radius: 50%;
+	color: red;
+	transition: 0.5s;
+}
+.tweet-home-buttons {
+	display: flex;
+	justify-content: space-between;
+	flex-grow: 2;
+	border-top: 1px solid rgba(128, 128, 128, 0.613);
+	padding-top: 8px;
+}
+
+.tweet-home-buttons-options {
+	font-size: 22px;
+	display: flex;
+	justify-content: space-between;
+	gap: 15px;
+	align-items: center;
+	border: none;
+}
+
+.tweet-home-button-tweet {
+	/* height: 46px;
+    width: 90px;
+    margin-left: 12;
+    border: 1px white;
+    background-color: rgb(29, 155, 240);
+    border-bottom-left-radius: 9999px;
+    border-bottom-right-radius: 9999px;
+    border-top-right-radius: 9999px;
+    border-top-left-radius: 9999px; */
+}
+.twetet-home-button-twee-inner {
+	/* height: 18px;
+    width: 43px;
+    margin-left: 12px;
+    padding-top: 12px;
+     */
+}
+.tweet-home-button-tweet-inner {
+	width: 90px;
+	margin-left: 12;
+	border: 1px white;
+	background-color: rgb(29, 155, 240);
+	border-bottom-left-radius: 9999px;
+	border-bottom-right-radius: 9999px;
+	border-top-right-radius: 9999px;
+	border-top-left-radius: 9999px;
+	cursor: pointer;
+	width: 90px;
+	font-size: 20px;
+	color: azure;
+	padding: 3px 0 3px 0;
+	transition: transform 0.3s ease;
+}
+
+.tweet-home-buttons-options {
+	font-size: 22px;
+	display: flex;
+	justify-content: space-between;
+	gap: 15px;
+	align-items: center;
+	border: none;
+}
+.tweet-home-box ion-icon {
+	font-size: 20px;
+	transition: transform 0.3s ease;
+}
+.tweet-home-box ion-icon:hover {
+	transform: scale(1.2);
+	border-radius: 15px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	cursor: pointer;
+}
+.tweet-home-button-tweet-inner:hover {
+	transform: scale(1.02);
+	border-radius: 15px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	cursor: pointer;
+}
