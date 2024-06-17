@@ -22,7 +22,6 @@ const initialState = {
 	modalIsOpen: false,
 	searchModalIsOpen: false,
 	commentedTweet: null,
-	
 };
 
 export const userSlice = createSlice({
@@ -67,6 +66,46 @@ export const userSlice = createSlice({
 				state.tweets[tweetIndex].comments.push(comment);
 			}
 		},
+		addLike: (state, action) => {
+			const { tweetId, userId } = action.payload;
+			const tweetIndex = state.tweets.findIndex(
+				(tweet) => tweet.id === tweetId
+			);
+			if (tweetIndex !== -1) {
+				state.tweets[tweetIndex].likes.push(userId);
+			}
+		},
+		removeLike: (state, action) => {
+			const { tweetId, userId } = action.payload;
+			const tweetIndex = state.tweets.findIndex(
+				(tweet) => tweet.id === tweetId
+			);
+			if (tweetIndex !== -1) {
+				state.tweets[tweetIndex].likes = state.tweets[tweetIndex].likes.filter(
+					(item) => item !== userId
+				);
+			}
+		},
+		addRepost: (state, action) => {
+			const { tweetId, userId } = action.payload;
+			const tweetIndex = state.tweets.findIndex(
+				(tweet) => tweet.id === tweetId
+			);
+			if (tweetIndex !== -1) {
+				state.tweets[tweetIndex].reposts.push(userId);
+			}
+		},
+		removeRepost: (state, action) => {
+			const { tweetId, userId } = action.payload;
+			const tweetIndex = state.tweets.findIndex(
+				(tweet) => tweet.id === tweetId
+			);
+			if (tweetIndex !== -1) {
+				state.tweets[tweetIndex].reposts = state.tweets[
+					tweetIndex
+				].reposts.filter((item) => item !== userId);
+			}
+		},
 		setModalMode: (state, action) => {
 			state.modalIsOpen = action.payload;
 		},
@@ -93,7 +132,11 @@ export const {
 	setModalMode,
 	setCommentedTweet,
 	searchModalIsOpen,
-	setSearchModalMode
+	setSearchModalMode,
+	addLike,
+	removeLike,
+	addRepost,
+	removeRepost,
 } = userSlice.actions;
 
 export default userSlice.reducer;

@@ -112,10 +112,12 @@ function InputTweetBox(props) {
 					comments: [...props.tweet.comments, tweetId],
 				});
 
-				addComment({
-					tweetId: props.tweet.id,
-					comment: tweetId,
-				});
+				dispatch(
+					addComment({
+						tweetId: props.tweet.id,
+						comment: tweetId,
+					})
+				);
 			}
 
 			dispatch(addTweet({ ...newTweet, id: tweetId }));

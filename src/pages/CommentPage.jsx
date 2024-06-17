@@ -22,7 +22,7 @@ const CommentPage = () => {
 		setSelectedTweet(tweet);
 		setLoading(false);
 	}, [storedTweets, postId, selectedTweet]);
-	console.log('selected tweet', selectedTweet);
+	
 
 	return (
 		<MainDispalyModule>

@@ -1,27 +1,19 @@
 import { NavLink, useParams, Link } from 'react-router-dom';
-import PostProfilePhoto from '../shared/components/UiElements/PostProfilePhoto';
-import UsersPost from '../shared/components/UiElements/UsersPost';
 import classes from './PostBox.module.css';
 import useProfilePhoto from '../hooks/useProfilePhoto';
 import { useSelector } from 'react-redux';
 import Loading from './Loading';
 import Avatar from '../shared/components/UiElements/Avatar';
-import PostStats from '../shared/components/TweetPost/PostStats';
 
 const PostBox = (props) => {
-	// const retweet = props.post.retweeted;
-
 	const params = useParams();
-
 	const usersData = useSelector((state) => state.user.usersData);
+	
 
 	const userData = usersData.filter(
 		(user) => user.userId === props.post.userId
 	)[0];
-	
-
 	const { profilePhotoURL, isProfileImgLoading } = useProfilePhoto(userData);
-
 	const date = new Date(props.post.timeStamp);
 	const day = date.getDate();
 	const year = date.getFullYear();
@@ -61,10 +53,8 @@ const PostBox = (props) => {
 				<div className={classes.box}>
 					<div className={classes.name}>
 						<div className={classes['name-header']}>
-							<div
-								style={{ display: 'flex', gap: '10px', alignItems: 'baseline' }}
-							>
-								<strong>{props.post.displayName}</strong>{' '}
+							<div className={classes['name-header-inner']}>
+								<span>{props.post.displayName}</span>{' '}
 								<div
 									style={{ fontSize: '14px' }}
 								>{`${day} ${month} ${year}`}</div>

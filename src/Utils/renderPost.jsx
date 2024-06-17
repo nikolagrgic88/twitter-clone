@@ -2,12 +2,17 @@ import { usersPost } from './usersPost';
 import classes from '../components/HomeRender.module.css';
 
 export const renderPost = (post, tweetsArray, onProfilePage) => {
+	console.log(tweetsArray);
+	console.log('post', post);
+
 	if (post.retweeted.length !== 0) {
 		const retweetedPost = tweetsArray.find(
 			(tweet) => tweet.id === post.retweeted.id
 		);
+
 		if (onProfilePage) {
 			let repostedRepost;
+
 			if (post.isReposted) {
 				repostedRepost = tweetsArray.find(
 					(tweet) => tweet.id === retweetedPost.retweeted.id
@@ -15,7 +20,7 @@ export const renderPost = (post, tweetsArray, onProfilePage) => {
 			}
 
 			return (
-				<div >
+				<div>
 					{post.retweeted.length !== 0 && (
 						<div className={classes.reposted}>
 							<ion-icon name='repeat-outline'></ion-icon>

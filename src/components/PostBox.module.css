@@ -63,3 +63,11 @@
 	width: 30px;
 	height: 30px;
 }
+.name-header-inner {
+	display: flex;
+	gap: 10px;
+	align-items: baseline;
+	font-weight: 400;
+}
+
+

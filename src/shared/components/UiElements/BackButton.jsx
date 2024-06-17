@@ -5,7 +5,7 @@ const BackButton = () => {
 	return (
 		<div>
 			<button
-				onClick={() => navigate('..')}
+				onClick={() => navigate(-1)}
 				style={{
 					backgroundColor: 'transparent',
 					border: 'none',

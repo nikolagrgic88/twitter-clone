@@ -30,10 +30,10 @@ const HomeRender = (props) => {
 
 	const filteredTweets = props.uid
 		? tweetsArray
-				.filter((item) => item.userId === props.uid)
+				.filter((item) => item.userId === props.uid && item.isCommentFor === null)
 				.sort((a, b) => b.timeStamp - a.timeStamp)
 		: tweetsArray
-				.filter((item) => item.isReposted === false)
+				.filter((item) => item.isReposted === false && item.isCommentFor === null)
 				.sort((a, b) => b.timeStamp - a.timeStamp);
 
 	return (

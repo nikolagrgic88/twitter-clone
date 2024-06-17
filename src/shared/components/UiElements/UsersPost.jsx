@@ -1,8 +1,7 @@
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import classes from './UsersPost.module.css';
 import PostStats from '../TweetPost/PostStats';
 import PostBox from '../../../components/PostBox';
-
 
 const UsersPost = (props) => {
 	const date = new Date(props.post.timeStamp);
@@ -11,17 +10,14 @@ const UsersPost = (props) => {
 	const month = new Intl.DateTimeFormat('en-US', { month: 'long' }).format(
 		date
 	);
-	const navigate = useNavigate
 
 	return (
 		<div className={classes.content}>
 			<div className={classes.box}>
 				<div className={classes.name}>
 					<div className={classes['name-header']}>
-						<div
-							style={{ display: 'flex', gap: '10px', alignItems: 'baseline' }}
-						>
-							<strong>{props.post.displayName}</strong>{' '}
+						<div className={classes['name-header-inner']}>
+							<span>{props.post.displayName}</span>{' '}
 							<div
 								style={{ fontSize: '14px' }}
 							>{`${day} ${month} ${year}`}</div>
@@ -46,7 +42,7 @@ const UsersPost = (props) => {
 						<PostBox post={props.rePostData} />
 					</div>
 				)}
-				{!props.isComment && <PostStats stats={props.post} />}
+				{!props.isComment && <PostStats id={props.post.id} />}
 			</div>
 		</div>
 	);

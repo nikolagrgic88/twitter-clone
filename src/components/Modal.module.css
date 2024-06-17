@@ -19,7 +19,7 @@
 	background-color: aliceblue;
 	border-radius: 50%;
 	padding: 4px 6px;
-	font-weight: bold;
+	font-weight: 400;
 }
 .closeBtn:hover {
 	background-color: red;

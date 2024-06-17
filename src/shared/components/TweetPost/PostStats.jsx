@@ -15,63 +15,78 @@ import {
 	where,
 } from 'firebase/firestore';
 import {
+	addLike,
 	addTweet,
+	removeLike,
 	removeTweet,
 	setCommentedTweet,
 	setModalMode,
 } from '../../../store/userSlice.js';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const PostStats = (props) => {
 	const dispatch = useDispatch();
+	const tweets = useSelector((state) => state.user.tweets);
+	const selectedTweet = tweets.find((tweet) => tweet.id === props.id);
+	const auth = getAuth();
 	const [isLiked, setIsLiked] = useState(false);
 	const [isReposted, setIsReposted] = useState(false);
-	const [tweetStats, setTweetStats] = useState({
-		likes: 0,
-		reposts: 0,
-		comments: 0,
-	});
+	// const [tweetStats, setTweetStats] = useState({
+	// 	likes: 0,
+	// 	reposts: 0,
+	// 	comments: 0,
+	// });
 
-	const auth = getAuth();
+	// console.log('tweet', selectedTweet);
+
+	// const userLikes = selectedTweet?.likes || [];
+	// const userReposts = selectedTweet?.reposts || [];
+	// const userComments = selectedTweet?.comments || [];
 
 	useEffect(() => {
-		const userLikes = props.stats?.likes || [];
-		const userReposts = props.stats?.reposts || [];
-		setTweetStats({
-			likes: userLikes.length,
-			reposts: userReposts.length,
-			comments: props.stats.comments?.length,
-		});
+		// setTweetStats({
+		// 	likes: userLikes.length,
+		// 	reposts: userReposts.length,
+		// 	comments: userComments.length,
+		// });
 
-		setIsLiked(userLikes.includes(auth.currentUser.uid));
-		setIsReposted(userReposts.includes(auth.currentUser.uid));
-	}, [props.stats, auth.currentUser.uid]);
+		setIsLiked(selectedTweet.likes.includes(auth.currentUser.uid));
+		setIsReposted(selectedTweet.reposts.includes(auth.currentUser.uid));
+	}, [auth.currentUser.uid]);
 
 	const likesHandler = async () => {
 		try {
 			if (!isLiked) {
-				await updateDoc(doc(cloudDb, 'tweets', props.stats.id), {
-					likes: [...props.stats.likes, auth.currentUser.uid],
+				await updateDoc(doc(cloudDb, 'tweets', selectedTweet.id), {
+					likes: [...selectedTweet.likes, auth.currentUser.uid],
 				});
+				dispatch(
+					addLike({ tweetId: selectedTweet.id, userId: auth.currentUser.uid })
+				);
 				setIsLiked(true);
-				setTweetStats((prevState) => ({
-					...prevState,
-					likes: (prevState.likes || 0) + 1,
-				}));
-				console.log('Like added');
+
+				// setTweetStats((prevState) => ({
+				// 	...prevState,
+				// 	likes: prevState.likes + 1,
+				// }));
 			} else {
-				const newLikes = props.stats.likes.filter(
+				const newLikes = selectedTweet.likes.filter(
 					(userId) => userId !== auth.currentUser.uid
 				);
-				await updateDoc(doc(cloudDb, 'tweets', props.stats.id), {
+				await updateDoc(doc(cloudDb, 'tweets', selectedTweet.id), {
 					likes: newLikes,
 				});
 				setIsLiked(false);
-				setTweetStats((prevState) => ({
-					...prevState,
-					likes: (prevState.likes || 0) - 1,
-				}));
-				console.log('Like removed');
+				dispatch(
+					removeLike({
+						tweetId: selectedTweet.id,
+						userId: auth.currentUser.uid,
+					})
+				);
+				// setTweetStats((prevState) => ({
+				// 	...prevState,
+				// 	likes: prevState.likes - 1,
+				// }));
 			}
 		} catch (error) {
 			console.error('Error updating likes:', error);
@@ -80,18 +95,18 @@ const PostStats = (props) => {
 	const repostsHandler = async () => {
 		try {
 			if (!isReposted) {
-				await updateDoc(doc(cloudDb, 'tweets', props.stats.id), {
-					reposts: [...props.stats.reposts, auth.currentUser.uid],
+				await updateDoc(doc(cloudDb, 'tweets', selectedTweet.id), {
+					reposts: [...selectedTweet.reposts, auth.currentUser.uid],
 				});
 				setIsReposted(true);
-				setTweetStats((prevState) => ({
-					...prevState,
-					reposts: (prevState.reposts || 0) + 1,
-				}));
+				// setTweetStats((prevState) => ({
+				// 	...prevState,
+				// 	reposts: prevState.reposts + 1,
+				// }));
 
 				const tweetsQuery = query(
 					collection(cloudDb, 'tweets'),
-					where(documentId(), '==', props.stats.id)
+					where(documentId(), '==', selectedTweet.id)
 				);
 				const querySnapshot = await getDocs(tweetsQuery);
 
@@ -111,6 +126,7 @@ const PostStats = (props) => {
 					reposts: [],
 					comments: [],
 					imageDownloadURL: null,
+					isCommentFor: null,
 					retweeted: { id: oldTweetId },
 					isReposted:
 						!tweetData.isReposted && tweetData.retweeted.length === 0
@@ -126,12 +142,12 @@ const PostStats = (props) => {
 			} else {
 				const tweetsQuery = query(
 					collection(cloudDb, 'tweets'),
-					where('retweeted.id', '==', props.stats.id),
+					where('retweeted.id', '==', selectedTweet.id),
 					where('userId', '==', auth.currentUser.uid)
 				);
 				const originalTweetQuery = query(
 					collection(cloudDb, 'tweets'),
-					where(documentId(), '==', props.stats.id)
+					where(documentId(), '==', selectedTweet.id)
 				);
 				const originalTweetSnapshot = await getDocs(originalTweetQuery);
 
@@ -164,11 +180,12 @@ const PostStats = (props) => {
 				const data = querySnapshot.docs[0].id;
 				await deleteDoc(doc(cloudDb, 'tweets', data));
 				setIsReposted(false);
-				setTweetStats((prevState) => ({
-					...prevState,
-					reposts: prevState.reposts - 1,
-				}));
-				dispatch(removeTweet(props.stats.id));
+				// setTweetStats((prevState) => ({
+				// 	...prevState,
+				// 	reposts: prevState.reposts - 1,
+				// }));
+
+				dispatch(removeTweet(selectedTweet.id));
 			}
 		} catch (error) {
 			console.error('Error updating repost:', error);
@@ -177,7 +194,7 @@ const PostStats = (props) => {
 
 	const commentsHandler = () => {
 		try {
-			dispatch(setCommentedTweet(props.stats.id));
+			dispatch(setCommentedTweet(selectedTweet.id));
 			dispatch(setModalMode(true));
 		} catch (e) {
 			console.log('Error adding comment: ', e);
@@ -193,7 +210,7 @@ const PostStats = (props) => {
 							color: isLiked ? 'red' : 'black',
 						}}
 					>
-						{tweetStats.likes}
+						{selectedTweet?.likes.length || 0}
 					</div>
 					<ion-button onClick={likesHandler}>
 						<ion-icon
@@ -207,7 +224,7 @@ const PostStats = (props) => {
 
 				<li>
 					<div style={{ color: isReposted ? 'green' : 'black' }}>
-						{tweetStats.reposts}
+						{selectedTweet?.reposts.length || 0}
 					</div>
 					<ion-button onClick={repostsHandler}>
 						<ion-icon
@@ -220,7 +237,7 @@ const PostStats = (props) => {
 				</li>
 
 				<li>
-					<div>{tweetStats.comments}</div>
+					<div>{selectedTweet?.comments.length || 0}</div>
 					<ion-button onClick={commentsHandler}>
 						<ion-icon
 							src='/img/chat-cloud.svg'
