@@ -1,6 +1,6 @@
 # Twitter Clone
 
-This repository contains a fully functional **Twitter Clone** built with **React**, **CSS**, and **Firebase**. The project demonstrates key features of Twitter, such as posting tweets, real-time updates, and user authentication.
+This repository contains a  **Twitter Clone** built with **React**, **CSS**, and **Firebase**. The project demonstrates key features of Twitter, such as posting tweets, real-time updates, and user authentication.
 
 ## Features
 - **Create Tweets**: Users can write and post tweets.
@@ -16,7 +16,7 @@ This repository contains a fully functional **Twitter Clone** built with **React
 ## Project Setup
 1. Clone the repository to your local machine:
     ```bash
-    git clone https://github.com/yourusername/twitter-clone.git
+    git clone https://github.com/nikolagrgic88/twitter-clone.git
     ```
 2. Install dependencies:
     ```bash
